@@ -1,0 +1,44 @@
+-- Criação do banco de dados
+CREATE DATABASE controle_estoque;
+
+-- Usando o banco de dados
+USE controle_estoque;
+
+-- Tabela de Categorias
+CREATE TABLE categorias (
+    id_categoria INT AUTO_INCREMENT PRIMARY KEY,
+    nome_categoria VARCHAR(100) NOT NULL
+);
+
+-- Tabela de Fornecedores
+CREATE TABLE fornecedores (
+    id_fornecedor INT AUTO_INCREMENT PRIMARY KEY,
+    nome_fornecedor VARCHAR(100) NOT NULL,
+    telefone_fornecedor VARCHAR(20),
+    endereco_fornecedor VARCHAR(255)
+);
+
+-- Tabela de Produtos
+CREATE TABLE produtos (
+    id_produto INT AUTO_INCREMENT PRIMARY KEY,
+    nome_produto VARCHAR(100) NOT NULL,
+    descricao_produto TEXT,
+    quantidade_estoque INT NOT NULL DEFAULT 0,
+    preco_unitario DECIMAL(10, 2) NOT NULL,
+    id_categoria INT,
+    id_fornecedor INT,
+    FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria),
+    FOREIGN KEY (id_fornecedor) REFERENCES fornecedores(id_fornecedor)
+);
+
+-- Tabela de Transações (Compras e Vendas)
+CREATE TABLE transacoes (
+    id_transacao INT AUTO_INCREMENT PRIMARY KEY,
+    tipo_transacao ENUM('compra', 'venda') NOT NULL,
+    data_transacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    id_produto INT,
+    quantidade INT NOT NULL,
+    preco_unitario DECIMAL(10, 2) NOT NULL,
+    valor_total DECIMAL(10, 2) AS (quantidade * preco_unitario) STORED,
+    FOREIGN KEY (id_produto) REFERENCES produtos(id_produto)
+);
