@@ -1,0 +1,26 @@
+-- Inserindo categorias
+INSERT INTO categorias (nome_categoria) VALUES ('Eletrônicos');
+INSERT INTO categorias (nome_categoria) VALUES ('Alimentos');
+INSERT INTO categorias (nome_categoria) VALUES ('Roupas');
+
+-- Inserindo fornecedores
+INSERT INTO fornecedores (nome_fornecedor, telefone_fornecedor, endereco_fornecedor) 
+VALUES ('Fornecedor A', '123456789', 'Rua X, 123, Cidade Y');
+INSERT INTO fornecedores (nome_fornecedor, telefone_fornecedor, endereco_fornecedor) 
+VALUES ('Fornecedor B', '987654321', 'Avenida Z, 456, Cidade W');
+
+-- Inserindo produtos
+INSERT INTO produtos (nome_produto, descricao_produto, quantidade_estoque, preco_unitario, id_categoria, id_fornecedor) 
+VALUES ('TV 42"', 'Televisor Full HD 42 polegadas', 50, 1500.00, 1, 1);
+INSERT INTO produtos (nome_produto, descricao_produto, quantidade_estoque, preco_unitario, id_categoria, id_fornecedor) 
+VALUES ('Arroz 5kg', 'Pacote de arroz 5kg', 100, 20.00, 2, 2);
+
+-- Inserindo transações
+INSERT INTO transacoes (tipo_transacao, id_produto, quantidade, preco_unitario) 
+VALUES ('compra', 1, 30, 1500.00);  -- Comprou 30 TVs
+INSERT INTO transacoes (tipo_transacao, id_produto, quantidade, preco_unitario) 
+VALUES ('venda', 1, 10, 1500.00);  -- Vendeu 10 TVs
+INSERT INTO transacoes (tipo_transacao, id_produto, quantidade, preco_unitario) 
+VALUES ('compra', 2, 50, 20.00);  -- Comprou 50 pacotes de arroz
+INSERT INTO transacoes (tipo_transacao, id_produto, quantidade, preco_unitario) 
+VALUES ('venda', 2, 20, 20.00);  -- Vendeu 20 pacotes de arroz
