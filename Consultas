@@ -1,0 +1,20 @@
+SELECT p.nome_produto, p.quantidade_estoque, p.preco_unitario, c.nome_categoria
+FROM produtos p
+JOIN categorias c ON p.id_categoria = c.id_categoria;
+
+
+
+SELECT t.tipo_transacao, t.data_transacao, t.quantidade, t.preco_unitario, t.valor_total
+FROM transacoes t
+WHERE t.id_produto = 1;  -- Substitua pelo ID do produto desejado
+
+
+
+SELECT p.nome_produto, SUM(t.quantidade) AS total_vendido
+FROM transacoes t
+JOIN produtos p ON t.id_produto = p.id_produto
+WHERE t.tipo_transacao = 'venda'
+GROUP BY p.nome_produto;
+
+
+
